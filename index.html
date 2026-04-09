@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>portfolioHUB | Arthur Felipe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --surface2: #eeece6;
+      --accent: #2a5c8f;
+      --accent2: #1a3a5c;
+      --text: #1c1c1c;
+      --muted: #6b6b6b;
+      --border: #d8d5cc;
+      --gold: #b8973a;
+      --tag-bg: #e8ecf2;
+      --tag-text: #2a5c8f;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(245,244,240,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+    }
+    .nav-brand span { color: var(--gold); }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--muted); text-decoration: none;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 100px 6% 60px;
+      gap: 4rem;
+    }
+    .hero-text { max-width: 540px; }
+    .hero-eyebrow {
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 28px; height: 2px;
+      background: var(--gold);
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--text); margin-bottom: 1rem;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-role {
+      font-size: 1.1rem; color: var(--muted);
+      margin-bottom: 2rem; font-weight: 300;
+    }
+    .hero-desc {
+      font-size: 0.97rem; color: var(--muted);
+      line-height: 1.8; margin-bottom: 2.5rem;
+      border-left: 3px solid var(--accent);
+      padding-left: 1.2rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: 0.7rem 1.8rem; font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.05em; border-radius: 4px;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.22s; border: none;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+    }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--accent);
+      border: 1.5px solid var(--accent);
+    }
+    .btn-outline:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
+
+    .hero-img-wrap {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .avatar-frame {
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
+      padding: 4px;
+      position: relative;
+    }
+    .avatar-inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: var(--surface2);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .avatar-initials {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem; font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .avatar-sub {
+      font-size: 0.75rem; color: var(--muted);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-top: 0.4rem;
+    }
+    .hero-info-badges {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-top: 1.8rem;
+    }
+    .badge {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--tag-bg); color: var(--tag-text);
+      padding: 0.3rem 0.9rem; border-radius: 20px;
+      font-size: 0.78rem; font-weight: 500;
+    }
+
+    /* ── SECTIONS COMMON ── */
+    section { padding: 80px 6%; }
+    section:nth-child(even) { background: var(--surface); }
+
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700; color: var(--text);
+    }
+    .section-divider {
+      width: 50px; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      margin: 1rem auto 0;
+    }
+
+    /* ── CURRICULUM ── */
+    .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+
+    .cv-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 2rem;
+      transition: box-shadow 0.2s;
+    }
+    .cv-card:hover { box-shadow: 0 8px 32px rgba(42,92,143,0.08); }
+
+    .cv-card-title {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.4rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .cv-card-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .timeline-item { position: relative; padding-left: 1.4rem; margin-bottom: 1.4rem; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: 0; top: 7px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .timeline-item::after {
+      content: ''; position: absolute; left: 3.5px; top: 16px;
+      width: 1px; height: calc(100% + 2px);
+      background: var(--border);
+    }
+    .timeline-item:last-child::after { display: none; }
+    .tl-date {
+      font-size: 0.72rem; font-weight: 600; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .tl-title { font-weight: 600; font-size: 0.95rem; margin: 0.15rem 0; }
+    .tl-sub { font-size: 0.84rem; color: var(--muted); }
+    .tl-desc { font-size: 0.82rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.6; }
+
+    /* skills bars */
+    .skill-item { margin-bottom: 1rem; }
+    .skill-label { display: flex; justify-content: space-between; font-size: 0.84rem; font-weight: 500; margin-bottom: 0.35rem; }
+    .skill-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+    .skill-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--gold)); transition: width 1s ease; }
+
+    .lang-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .lang-item { display: flex; justify-content: space-between; align-items: center; }
+    .lang-name { font-weight: 500; font-size: 0.9rem; }
+    .lang-level { font-size: 0.78rem; color: var(--muted); background: var(--tag-bg); padding: 0.2rem 0.7rem; border-radius: 20px; }
+
+    .cert-list { display: flex; flex-direction: column; gap: 0.7rem; }
+    .cert-item {
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      padding: 0.7rem; border-radius: 6px;
+      background: var(--bg); border: 1px solid var(--border);
+      font-size: 0.84rem;
+    }
+    .cert-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .cert-name { font-weight: 500; }
+    .cert-org { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── PROJETOS ── */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.8rem; }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(42,92,143,0.1); }
+    .project-top {
+      height: 10px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+    }
+    .project-body { padding: 1.6rem; }
+    .project-category {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .project-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 0.6rem; }
+    .project-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .tag { background: var(--tag-bg); color: var(--tag-text); padding: 0.2rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
+    .project-link {
+      font-size: 0.8rem; font-weight: 600; color: var(--accent);
+      text-decoration: none; letter-spacing: 0.05em;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+    }
+    .project-link:hover { color: var(--gold); }
+
+    /* ── HABILIDADES ── */
+    .skills-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .skill-cat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.6rem;
+    }
+    .skill-cat-title {
+      font-weight: 600; font-size: 0.9rem;
+      margin-bottom: 1rem; color: var(--accent);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill {
+      background: var(--tag-bg); color: var(--tag-text);
+      padding: 0.3rem 0.9rem; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 500;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+    .pill:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
+
+    /* ── SOFT SKILLS ── */
+    .soft-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem; }
+    .soft-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.4rem 1.2rem;
+      text-align: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .soft-item:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(42,92,143,0.09); }
+    .soft-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+    .soft-name { font-weight: 600; font-size: 0.88rem; }
+
+    /* ── TESTEMUNHOS ── */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; }
+    .testimonial-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.8rem;
+      position: relative;
+    }
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; color: var(--accent);
+      opacity: 0.15; position: absolute;
+      top: 0.5rem; left: 1.2rem; line-height: 1;
+    }
+    .testimonial-text { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.2rem; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 0.8rem; }
+    .author-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #fff; font-size: 0.85rem;
+    }
+    .author-name { font-weight: 600; font-size: 0.88rem; }
+    .author-role { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contato {
+      background: var(--accent2);
+      color: #fff;
+    }
+    #contato .section-title { color: #fff; }
+    #contato .section-label { color: var(--gold); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .contact-text { font-size: 0.95rem; opacity: 0.8; line-height: 1.8; margin-bottom: 1.5rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.8rem;
+      color: #fff; text-decoration: none; font-size: 0.9rem;
+      opacity: 0.85; transition: opacity 0.2s;
+    }
+    .contact-link:hover { opacity: 1; }
+    .contact-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px; padding: 2rem;
+    }
+    .contact-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 1.2rem; }
+    .contact-card p { font-size: 0.85rem; opacity: 0.75; line-height: 1.8; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f1c2d; color: rgba(255,255,255,0.5);
+      text-align: center; padding: 1.8rem;
+      font-size: 0.8rem;
+    }
+    footer strong { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      #hero { grid-template-columns: 1fr; text-align: center; padding: 100px 5% 50px; }
+      .hero-img-wrap { order: -1; }
+      .avatar-frame { width: 200px; height: 200px; }
+      .avatar-initials { font-size: 3rem; }
+      .hero-eyebrow { justify-content: center; }
+      .hero-ctas { justify-content: center; }
+      .hero-desc { text-align: left; }
+      .cv-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-links a { font-size: 0.72rem; }
+      section { padding: 60px 5%; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-text > * { animation: fadeUp 0.7s ease both; }
+    .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-text > *:nth-child(2) { animation-delay: 0.2s; }
+    .hero-text > *:nth-child(3) { animation-delay: 0.3s; }
+    .hero-text > *:nth-child(4) { animation-delay: 0.4s; }
+    .hero-text > *:nth-child(5) { animation-delay: 0.5s; }
+    .hero-text > *:nth-child(6) { animation-delay: 0.6s; }
+    .hero-img-wrap { animation: fadeUp 0.9s 0.3s ease both; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">portfolio<span>HUB</span></div>
+  <ul class="nav-links">
+    <li><a href="#perfil">Perfil</a></li>
+    <li><a href="#curriculo">Currículo</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#habilidades">Habilidades</a></li>
+    <li><a href="#testemunhos">Testemunhos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO / PERFIL -->
+<section id="perfil" style="padding-top:0;">
+  <div id="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Portfólio Profissional</div>
+      <h1 class="hero-name">Arthur Felipe<br><span>Queiroz Costa</span></h1>
+      <p class="hero-role">Suporte de TI &nbsp;·&nbsp; Estudante de ADS &nbsp;·&nbsp; 1º Semestre</p>
+      <p class="hero-desc">
+        Profissional de TI com experiência em suporte ao usuário, apaixonado por tecnologia e em constante aprendizado.
+        Cursando Análise e Desenvolvimento de Sistemas, buscando crescer na área de tecnologia com foco em soluções
+        práticas e eficientes para as pessoas.
+      </p>
+      <div class="hero-ctas">
+        <a href="#curriculo" class="btn btn-primary">Ver Currículo</a>
+        <a href="#contato" class="btn btn-outline">Entrar em Contato</a>
+      </div>
+      <div class="hero-info-badges">
+        <span class="badge">📍 Brasil</span>
+        <span class="badge">🎓 ADS — 1º Semestre</span>
+        <span class="badge">💼 Suporte TI</span>
+        <span class="badge">🟢 Disponível</span>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <div class="avatar-frame">
+        <div class="avatar-inner">
+          <div class="avatar-initials">AF</div>
+          <div class="avatar-sub">Arthur Felipe</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRÍCULO -->
+<section id="curriculo">
+  <div class="section-header">
+    <div class="section-label">Trajetória</div>
+    <h2 class="section-title">Currículo</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="cv-grid">
+
+    <!-- Formação -->
+    <div class="cv-card">
+      <div class="cv-card-title">🎓 Formação Acadêmica</div>
+      <div class="timeline-item">
+        <div class="tl-date">2025 — Cursando</div>
+        <div class="tl-title">Análise e Desenvolvimento de Sistemas</div>
+        <div class="tl-sub">CEUB — 1º Semestre</div>
+        <div class="tl-desc">Graduação tecnológica com foco em desenvolvimento de software, banco de dados, lógica de programação e infraestrutura.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Concluído</div>
+        <div class="tl-title">Ensino Médio Completo</div>
+        <div class="tl-sub">Objetivo Vicente Pires</div>
+      </div>
+    </div>
+
+    <!-- Experiência -->
+    <div class="cv-card">
+      <div class="cv-card-title">💼 Experiência Profissional</div>
+      <div class="timeline-item">
+        <div class="tl-date">Atual</div>
+        <div class="tl-title">Suporte de TI — Técnico N1/N2</div>
+        <div class="tl-sub">Área de TI</div>
+        <div class="tl-desc">Atendimento e resolução de chamados técnicos, suporte a hardware e software, configuração de equipamentos, manutenção de sistemas e atendimento ao usuário final.</div>
+      </div>
+    </div>
+
+    <!-- Habilidades Técnicas -->
+    <div class="cv-card">
+      <div class="cv-card-title">⚙️ Habilidades Técnicas</div>
+      <div class="skill-item">
+        <div class="skill-label"><span>Suporte ao Usuário</span><span>90%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span>Windows / Active Directory</span><span>80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span>Hardware &amp; Manutenção</span><span>75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span> Software</span><span>70%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span>Redes Básicas (TCP/IP)</span><span>50%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 50%"></div></div>
+      </div>
+    </div>
+
+    <!-- Idiomas + Certificações -->
+    <div class="cv-card">
+      <div class="cv-card-title">🌍 Idiomas</div>
+      <div class="lang-list" style="margin-bottom:1.8rem">
+        <div class="lang-item">
+          <span class="lang-name">Português</span>
+          <span class="lang-level">Nativo</span>
+        </div>
+        <div class="lang-item">
+          <span class="lang-name">Inglês</span>
+          <span class="lang-level">Básico / Técnico</span>
+        </div>
+      </div>
+
+<div class="cv-card-title">🏅 Certificações</div>
+<div class="cert-list">
+  <div class="cert-item">
+    <div class="cert-icon">🌐</div>
+    <div>
+      <div class="cert-name">Lei Geral de Proteção de Dados (LGPD)</div>
+      <div class="cert-org">Gestão de Serviços de TI</div>
+    </div>
+  </div>
+
+  <div class="cert-item">
+    <div class="cert-icon">🖥️</div>
+    <div>
+      <div class="cert-name">Suporte Técnico em Hardware</div>
+      <div class="cert-org">Curso Técnico</div>
+    </div>
+  </div>
+
+  <div class="cert-item">
+    <div class="cert-icon">🌐</div>
+    <div>
+      <div class="cert-name">Fundamentos de Redes</div>
+      <div class="cert-org">Formação Online</div>
+    </div>
+  </div>
+
+  <div class="cert-item">
+    <div class="cert-icon">🔐</div>
+    <div>
+      <div class="cert-name">Introdução à Cibersegurança</div>
+      <div class="cert-org">Formação Online</div>
+    </div>
+  </div>
+
+</div>
+
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos" style="background:var(--bg)">
+  <div class="section-header">
+    <div class="section-label">Portfólio</div>
+    <h2 class="section-title">Projetos Acadêmicos e Profissionais</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-top"></div>
+      <div class="project-body">
+        <div class="project-category">Acadêmico · ADS</div>
+        <div class="project-title">portfolioHUB</div>
+        <p class="project-desc">Portfólio digital desenvolvido como projeto da faculdade de ADS. Inclui Git, GitHub Pages e estrutura completa de apresentação profissional. Demonstra habilidades em HTML, CSS e versionamento de código.</p>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub Pages</span>
+        </div>
+        <a href="#" class="project-link">Ver repositório →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top"></div>
+      <div class="project-body">
+        <div class="project-category">Profissional · TI</div>
+        <div class="project-title">Automação de Chamados</div>
+        <p class="project-desc">Organização e padronização do fluxo de atendimento de chamados no ambiente de trabalho. Criação de scripts simples para automatizar tarefas repetitivas de suporte N1, reduzindo tempo de resolução.</p>
+        <div class="project-tags">
+          <span class="tag">Windows</span>
+          <span class="tag">Batch Script</span>
+          <span class="tag">Helpdesk</span>
+        </div>
+        <a href="#" class="project-link">Ver detalhes →</a>
+      </div>
+    </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HABILIDADES -->
+<section id="habilidades">
+  <div class="section-header">
+    <div class="section-label">Competências</div>
+    <h2 class="section-title">Habilidades e Competências</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="skills-showcase" style="margin-bottom:2.5rem">
+    <div class="skill-cat">
+      <div class="skill-cat-title">🖥️ Infraestrutura & Suporte</div>
+      <div class="skill-pills">
+        <span class="pill">Windows 10/11</span>
+        <span class="pill">Active Directory</span>
+        <span class="pill">Hardware</span>
+        <span class="pill">BIOS / UEFI</span>
+        <span class="pill">Impressoras</span>
+        <span class="pill">VPN</span>
+        <span class="pill">Helpdesk</span>
+      </div>
+
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">🛠️ Ferramentas</div>
+      <div class="skill-pills">
+        <span class="pill">Microsoft Office</span>
+        <span class="pill">Teams</span>
+        <span class="pill">Remote Desktop</span>
+        <span class="pill">AnyDesk</span>
+        <span class="pill">DeskManager</span>
+        <span class="pill">TeamViewer</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header" style="margin-top:3rem; margin-bottom:1.5rem">
+    <div class="section-label">Comportamentais</div>
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:600">Soft Skills</h3>
+  </div>
+  <div class="soft-grid">
+    <div class="soft-item"><div class="soft-icon">🤝</div><div class="soft-name">Trabalho em Equipe</div></div>
+    <div class="soft-item"><div class="soft-icon">💬</div><div class="soft-name">Comunicação</div></div>
+    <div class="soft-item"><div class="soft-icon">🔍</div><div class="soft-name">Resolução de Problemas</div></div>
+    <div class="soft-item"><div class="soft-icon">📚</div><div class="soft-name">Aprendizado Contínuo</div></div>
+    <div class="soft-item"><div class="soft-icon">⏱️</div><div class="soft-name">Gestão de Tempo</div></div>
+    <div class="soft-item"><div class="soft-icon">🎯</div><div class="soft-name">Foco em Resultados</div></div>
+    <div class="soft-item"><div class="soft-icon">🧩</div><div class="soft-name">Pensamento Analítico</div></div>
+    <div class="soft-item"><div class="soft-icon">😊</div><div class="soft-name">Atendimento ao Usuário</div></div>
+  </div>
+</section>
+
+<!-- TESTEMUNHOS -->
+<section id="testemunhos" style="background:var(--bg)">
+  <div class="section-header">
+    <div class="section-label">Recomendações</div>
+    <h2 class="section-title">Testemunhos</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="testimonials-grid">
+    <div 
+    </div
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">Um jovem começando sua carreira, bastante dedicado e com vontade de aprender. Além disso, um dos pontos marcantes do Arthur é sua educação e cortesia com cada cliente atendido, dando sempre seu melhor independente da situação enfrentada. Com certeza, irá crescer bastante!</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">CM</div>
+        <div>
+          <div class="author-name">Emerson Santana </div>
+          <div class="author-role">Analista de Suporte e Telefonia</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <p class="testimonial-text">O que mais tem me impressionado no Arthur é a sua capacidade de aprendizado independente que ele vem desenvolvendo. Ele não é o tipo de técnico que fica parado esperando a solução; ele tem a proatividade de buscar novas fontes de conhecimento para resolver os desafios. Tenho acompanhado sua evolução e é nítido como ele tem se tornado cada vez mais autônomo. Além disso, sua organização e abertura para feedbacks mostram um profissional com os pés no chão e muita vontade de crescer.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">RN</div>
+        <div>
+          <div class="author-name">Rodrigo Nery</div>
+          <div class="author-role">Tecnico N2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-header">
+    <div class="section-label">Fale Comigo</div>
+    <h2 class="section-title">Contato</h2>
+    <div class="section-divider" style="background:linear-gradient(90deg,#fff,var(--gold))"></div>
+  </div>
+
+  <div class="contact-grid">
+    <div>
+      <p class="contact-text">
+        Estou aberto a novas oportunidades de emprego, projetos colaborativos e conexões profissionais.
+        Se quiser conversar sobre tecnologia, ADS ou suporte de TI, fique à vontade para entrar em contato!
+      </p>
+      <div class="contact-links">
+        <a href="mailto:arthurfelipe@gmail.com" class="contact-link">
+          <div class="contact-icon">✉️</div>
+          arthurfelipe@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/arthur-felipe-queiroz-costa-5a00b63b7/" target="_blank" class="contact-link">
+          <div class="contact-icon">💼</div>
+          linkedin.com/in/arthurfelipecosta
+        </a>
+        <a href="https://github.com/ArthurFelipeQueiroz" target="_blank" class="contact-link">
+          <div class="contact-icon">🐙</div>
+          github.com/ArthurFelipeQueiroz
+        </a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <h3>📌 Sobre este Portfólio</h3>
+      <p>
+        Este portfólio foi desenvolvido como parte do projeto <strong style="color:var(--gold)">portfolioHUB</strong> da disciplina de
+        Fundamentos de TI no curso de Análise e Desenvolvimento de Sistemas.
+        Publicado via <strong style="color:var(--gold)">GitHub Pages</strong> e versionado com Git.
+        <br><br>
+        🔗 Repositório: <a href="#" style="color:var(--gold)">github.com/arthurfelipecosta/portfoliohub</a><br>
+        🌐 Site: <a href="#" style="color:var(--gold)">arthurfelipecosta.github.io/portfoliohub</a><br>
+        
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <strong>Arthur Felipe Queiroz Costa</strong> · portfolioHUB · Feito para ADS · Publicado via GitHub Pages</p>
+</footer>
+
+</body>
+</html>
