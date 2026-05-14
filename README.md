@@ -36,7 +36,6 @@ Este repositório foi criado como entrega da atividade **Desafio — Entrega Int
 | `assets/style.css` | Folha de estilos do site principal |
 | `README.md` | Documentação principal do repositório (este arquivo) |
 | `projetos/portfoliohub/` | Portfólio digital — HTML5, CSS3, Git, GitHub Pages |
-| `projetos/automacao-chamados/` | Scripts Batch de automação para suporte TI (3 scripts) |
 | `docs/curriculo.md` | Currículo completo em Markdown |
 
 ## 🔖 Histórico de versões
